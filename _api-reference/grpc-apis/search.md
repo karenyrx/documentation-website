@@ -109,7 +109,7 @@ The `SearchRequestBody` message accepts the following fields. All fields are opt
 | `verbose_pipeline` | `bool` | Enables verbose logging in the search pipeline. |
 | `query` | [`QueryContainer`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L342) | The query domain-specific language (DSL) for the search. |
 | `rescore` | `repeated` [`Rescore`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/search.proto#L631) | Reranks the top N hits to improve precision. |
-| `script_fields` | `map<string, `[`ScriptField`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L580)`>` | Custom fields whose values are computed by scripts. |
+| `script_fields` | `[`ScriptField`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L580)`>` | Custom fields whose values are computed by scripts. |
 | `search_after` | `repeated` [`FieldValue`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L2002) | Cursor-based pagination using values from the previous page. |
 | `size` | `int32` | The number of results to return. Default is `10`. |
 | `slice` | [`SlicedScroll`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/search.proto#L641) | Split scroll context into slices for parallel processing. |
@@ -126,7 +126,7 @@ The `SearchRequestBody` message accepts the following fields. All fields are opt
 | `stored_fields` | `repeated string` | The stored fields to return (excludes `_source` unless re-enabled). |
 | `pit` | [`PointInTimeReference`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/search.proto#L752) | The Point in Time reference used to search a fixed snapshot. |
 | `stats` | `repeated string` | The tagging or logging fields to associate with the request. |
-| `derived` | `map<string, `[`DerivedField`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/search.proto#L292)`>` | Dynamically computed fields returned in the response. |
+| `derived` | `[`DerivedField`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/search.proto#L292)`>` | Dynamically computed fields returned in the response. |
 
 
 ### QueryContainer fields
@@ -146,24 +146,24 @@ Note that some query types are currently unsupported. Currently, only [`match_al
 | `dis_max` | [`DisMaxQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1349) | Returns documents matching any clause. Uses the highest score if multiple clauses match. Must be the only field set. |
 | `function_score` | [`FunctionScoreQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1364) | Adjusts the scores of results using custom functions. Must be the only field set. |
 | `exists` | [`ExistsQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1007) | Matches documents that contain a specific field. Must be the only field set. |
-| `fuzzy` | `map<string, `[`FuzzyQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1929)`>` | Matches terms similar to the search term (fuzzy matching). Only one entry is allowed. Must be the only field set. |
+| `fuzzy` | `[`FuzzyQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1929)`>` | Matches terms similar to the search term (fuzzy matching). Only one entry is allowed. Must be the only field set. |
 | `ids` | [`IdsQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L2011) | Matches documents by `_id` values. Must be the only field set. |
-| `prefix` | `map<string, `[`PrefixQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1547)`>` | Matches terms with a specific prefix. Only one entry is allowed. Must be the only field set. |
-| `range` | `map<string, `[`RangeQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1797)`>` | Matches terms within a specified range. Only one entry is allowed. Must be the only field set. |
-| `regexp` | `map<string, `[`RegexpQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1804)`>` | Matches terms using regular expressions. Only one entry is allowed. Must be the only field set. |
-| `term` | `map<string, `[`TermQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1670)`>` | Matches exact terms (no analysis). Only one entry is allowed. Must be the only field set. |
+| `prefix` | `[`PrefixQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1547)`>` | Matches terms with a specific prefix. Only one entry is allowed. Must be the only field set. |
+| `range` | `[`RangeQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1797)`>` | Matches terms within a specified range. Only one entry is allowed. Must be the only field set. |
+| `regexp` | `[`RegexpQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1804)`>` | Matches terms using regular expressions. Only one entry is allowed. Must be the only field set. |
+| `term` | `[`TermQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1670)`>` | Matches exact terms (no analysis). Only one entry is allowed. Must be the only field set. |
 | `terms` | [`TermsQueryField`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1607) | Matches any document containing one or more specified terms in a field. Must be the only field set. |
-| `terms_set` | `map<string, `[`TermsSetQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1647)`>` | Matches documents containing a minimum number of exact terms in a field. Only one entry is allowed. Must be the only field set. |
-| `wildcard` | `map<string, `[`WildcardQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1071)`>` | Matches terms using a wildcard pattern. Only one entry is allowed. Must be the only field set. |
-| `match` | `map<string, `[`MatchQueryTypeless`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1163)`>` | Full-text match on text or exact-value fields. Only one entry is allowed. Must be the only field set. |
-| `match_bool_prefix` | `map<string, `[`MatchBoolPrefixQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L2079)`>` | Matches full words and prefixes in a Boolean-style query. Only one entry is allowed. Must be the only field set. |
-| `match_phrase` | `map<string, `[`MatchPhraseQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L2206)`>` | Matches an exact phrase in order. Only one entry is allowed. Must be the only field set. |
-| `match_phrase_prefix` | `map<string, `[`MatchPhrasePrefixQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L2171)`>` | Matches a phrase in which the last term is treated as a prefix. Only one entry is allowed. Must be the only field set. |
+| `terms_set` | `[`TermsSetQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1647)`>` | Matches documents containing a minimum number of exact terms in a field. Only one entry is allowed. Must be the only field set. |
+| `wildcard` | `[`WildcardQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1071)`>` | Matches terms using a wildcard pattern. Only one entry is allowed. Must be the only field set. |
+| `match` | `[`MatchQueryTypeless`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1163)`>` | Full-text match on text or exact-value fields. Only one entry is allowed. Must be the only field set. |
+| `match_bool_prefix` | `[`MatchBoolPrefixQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L2079)`>` | Matches full words and prefixes in a Boolean-style query. Only one entry is allowed. Must be the only field set. |
+| `match_phrase` | `[`MatchPhraseQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L2206)`>` | Matches an exact phrase in order. Only one entry is allowed. Must be the only field set. |
+| `match_phrase_prefix` | `[`MatchPhrasePrefixQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L2171)`>` | Matches a phrase in which the last term is treated as a prefix. Only one entry is allowed. Must be the only field set. |
 | `multi_match` | [`MultiMatchQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L2236) | Searches multiple fields using a single query string. Must be the only field set. |
 | `query_string` | [`QueryStringQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1690) | Parses advanced queries written as a single string. Must be the only field set. |
 | `simple_query_string` | [`SimpleQueryStringQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1690) | A less strict syntax alternative to `query_string`. Ignores invalid syntax. Must be the only field set. |
-| `intervals` | `map<string, `[`IntervalsQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1453)`>` | Matches terms based on position/proximity. Only one entry is allowed. Must be the only field set. |
-| `knn` | `map<string, `[`KnnField`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1126)`>` | A k-NN query across vector fields. Only one entry is allowed. Must be the only field set. |
+| `intervals` | `[`IntervalsQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1453)`>` | Matches terms based on position/proximity. Only one entry is allowed. Must be the only field set. |
+| `knn` | `[`KnnField`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L1126)`>` | A k-NN query across vector fields. Only one entry is allowed. Must be the only field set. |
 | `match_all` | [`MatchAllQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L2068) | Matches all documents in the index. Must be the only field set. |
 | `match_none` | [`MatchNoneQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L2156) | Matches no documents. Must be the only field set. |
 | `script_score` | [`ScriptScoreQuery`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L991) | Applies custom scoring using scripts. Must be the only field set. |
@@ -332,12 +332,12 @@ Each `Hit` represents a single document matched by the query and contains the fo
 | `score` | [`Score`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/search.proto#L469) | The relevance score of the hit. |
 | `explanation` | [`Explanation`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/search.proto#L951) | A text explanation of how the `_score` was calculated. |
 | `fields` | [`ObjectMap`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L76) | The document field values. |
-| `highlight` | `map<string, `[`StringArray`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L165)`>` | The highlighted fields and fragments per hit. |
-| `inner_hits` | `map<string, `[`InnerHitsResult`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/search.proto#L453)`>` | The matching nested documents from a different scope that contributed to the overall query result. |
+| `highlight` | `[`StringArray`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L165)`>` | The highlighted fields and fragments per hit. |
+| `inner_hits` | `[`InnerHitsResult`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/search.proto#L453)`>` | The matching nested documents from a different scope that contributed to the overall query result. |
 | `matched_queries` | `repeated string` | A list of query names matching the document. |
 | `nested` | [`NestedIdentity`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/search.proto#L962) | The path to the inner nested object from which the hit originated. |
 | `ignored` | `repeated string` | A list of ignored fields. |
-| `ignored_field_values` | `map<string, `[`StringArray`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L165)`>` | Raw, unprocessed values from the document's original JSON. |
+| `ignored_field_values` | `[`StringArray`](https://github.com/opensearch-project/opensearch-protobufs/blob/0.6.0/protos/schemas/common.proto#L165)`>` | Raw, unprocessed values from the document's original JSON. |
 | `shard` | `string` | The shard ID from which the hit was retrieved. |
 | `node` | `string` | The node ID from which the hit was retrieved. |
 | `routing` | `string` | The routing value used for custom shard routing. |
